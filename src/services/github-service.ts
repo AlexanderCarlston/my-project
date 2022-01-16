@@ -1,5 +1,6 @@
-const axios = require('axios')
+import axios from "axios"
 
+// TODO: Add types for request return types, couldn't find them for REST API
 export default class GithubService {
   baseUrl: string;
 
@@ -7,11 +8,11 @@ export default class GithubService {
     this.baseUrl = baseUrl;
   }
 
-  callApi(url: string) {
+  callApi(url: string): Promise<any> {
     return axios.get(url)
   }
 
-  getCommitsForPull(owner: string, repo: string, pullNumber: string) {
+  getCommitsForPull(owner: string, repo: string, pullNumber: string): Promise<any> {
     return axios.get(this.baseUrl + `/repos/${owner}/${repo}/pulls/${pullNumber}commits`)
   }
 
