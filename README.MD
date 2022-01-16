@@ -82,7 +82,7 @@ For the REST API, I think following the github API standards would be best. With
 I think this would be extremely easy in a RPC style.
 
 ```
-getPulls()
+getOpenPulls()
 ```
 
 
