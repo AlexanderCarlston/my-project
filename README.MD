@@ -89,3 +89,23 @@ getPulls()
 ## Resources:
 
 Planning: https://github.com/AlexanderCarlston/my-project/projects/1
+
+
+
+## Future Wants
+
+> I had run into the issue of the API rate limiter
+
+
+### Rate limit
+
+A big issue I had run into tests was that I didn't have the ability to constantly run real end to end tests to get the tests where I wanted them.
+
+<br>
+
+### Solution
+
+The solution I was going down was creating a .ENV to use the client token/secret to get more rate limit API calls.
+
+
+The reason I chose against this for this stage was because it would add another step in the instructions that wouldn't give much benefits. As long as the requests are under 60 a day then this will work for now.
