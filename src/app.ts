@@ -8,7 +8,6 @@ app.get("/", async(req: any, res: any) => {
   res.send("API works!");
 })
 
-// commits_url
 app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
   // TODO: Add params validation
   let {owner, repo} = req.params
@@ -20,6 +19,7 @@ app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
 
     const getCommits = async () => {
       return Promise.all(response.data.map(async(repo: any) => {
+        // TODO: possibly add try catch and set number of commits to undefined in case of error (instead of failing entire request)
         let commits = await CurrentGithubService.callApi(repo.commits_url)
         repo.number_of_commits = commits.data.length
         return repo
