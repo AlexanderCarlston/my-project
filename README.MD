@@ -27,12 +27,12 @@ yarn
 ```
 
 
+### 3.) Run basic tests
 
 
-
-
-
-
+```
+"test": "jest"
+```
 
 ## Limitations:
 
