@@ -9,8 +9,8 @@ app.get("/", async(req: any, res: any) => {
 })
 
 app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
-  // TODO: Add params validation
   let {owner, repo} = req.params
+  if(typeof owner !== 'string' || typeof repo !== 'string') {res.send("Owner/Repo should be strings").status(400)}
 
   try {
     let response = await CurrentGithubService.getPulls(owner, repo)
@@ -28,10 +28,12 @@ app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
 
     let changedRepos = await getCommits()
 
-    res.send(changedRepos).status(201)
+    res.send(changedRepos).status(200)
   } catch(err) {
     res.send(err).status(500)
   }
 })
 
 app.listen(port)
+
+export default app
