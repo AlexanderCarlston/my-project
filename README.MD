@@ -109,3 +109,9 @@ The solution I was going down was creating a .ENV to use the client token/secret
 
 
 The reason I chose against this for this stage was because it would add another step in the instructions that wouldn't give much benefits. As long as the requests are under 60 a day then this will work for now.
+
+
+### Containerize -> AWS Lambda
+
+
+I've been doing a lot with AWS recently, and have been working with the API gateway and lambda. I thought for this app it would be really nice to have this be a lambda function. I made the project in a way where essentially it can be turned into a function easily, since I wanted to avoid configuration and my personal AWS calls being limited.
