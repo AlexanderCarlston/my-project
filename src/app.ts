@@ -8,10 +8,9 @@ app.get("/", async(req: any, res: any) => {
   res.send("API works!");
 })
 
-// commits_url
 app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
-  // TODO: Add params validation
   let {owner, repo} = req.params
+  if(typeof owner !== 'string' || typeof repo !== 'string') {res.send("Owner/Repo should be strings").status(400)}
 
   try {
     let response = await CurrentGithubService.getPulls(owner, repo)
@@ -20,6 +19,7 @@ app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
 
     const getCommits = async () => {
       return Promise.all(response.data.map(async(repo: any) => {
+        // TODO: possibly add try catch and set number of commits to undefined in case of error (instead of failing entire request)
         let commits = await CurrentGithubService.callApi(repo.commits_url)
         repo.number_of_commits = commits.data.length
         return repo
@@ -28,10 +28,12 @@ app.get("/repos/:owner/:repo/pulls", async(req: any, res: any) => {
 
     let changedRepos = await getCommits()
 
-    res.send(changedRepos).status(201)
+    res.send(changedRepos).status(200)
   } catch(err) {
     res.send(err).status(500)
   }
 })
 
 app.listen(port)
+
+export default app
